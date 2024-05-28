@@ -142,9 +142,11 @@ if (config.networks?.hardhat?.forking?.enabled) {
                 console.log("Test. Mint new position");
                 console.log("");
 
-                // // mintNewPosition
-                // const result = await uni.mintNewPosition();
-                // console.log("result", result);
+                // mintNewPosition
+                const tx = await uni.mintNewPosition();
+                console.log("");
+                console.log("Test. Mint new position tx : ", tx.hash);
+                console.log("");
             });
         });
     });
