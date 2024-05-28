@@ -1,0 +1,7 @@
+[
+  "function collect(tuple(uint256,address,uint128,uint128)) payable returns (uint256, uint256)",
+  "function decreaseLiquidity(tuple(uint256,uint128,uint256,uint256,uint256)) payable returns (uint256, uint256)",
+  "function factory() view returns (address)",
+  "function increaseLiquidity(tuple(uint256,uint256,uint256,uint256,uint256,uint256)) payable returns (uint128, uint256, uint256)",
+  "function mint(tuple(address,address,uint24,int24,int24,uint256,uint256,uint256,uint256,address,uint256)) payable returns (uint256, uint128, uint256, uint256)"
+]

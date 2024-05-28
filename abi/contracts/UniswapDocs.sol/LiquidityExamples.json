@@ -1,0 +1,16 @@
+[
+  "constructor()",
+  "function DAI() view returns (address)",
+  "function USDC() view returns (address)",
+  "function U_V3_Factory() view returns (address)",
+  "function U_V3_NonfungiblePositionManager() view returns (address)",
+  "function U_V3_SwapRouter() view returns (address)",
+  "function createFactoryPool(address,address) returns (address)",
+  "function deposits(uint256) view returns (address, uint128, address, address)",
+  "function factory() view returns (address)",
+  "function getPoolInfo(address,address) view returns (address, int24)",
+  "function mintNewPosition() returns (uint256, uint128, uint256, uint256)",
+  "function nonfungiblePositionManager() view returns (address)",
+  "function onERC721Received(address,address,uint256,bytes) returns (bytes4)",
+  "function poolFee() view returns (uint24)"
+]
