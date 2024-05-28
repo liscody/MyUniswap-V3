@@ -1,6 +1,6 @@
 # Solidity API
 
-## LiquidityExamples
+## UniswapV3
 
 ### U_V3_NonfungiblePositionManager
 
@@ -26,17 +26,13 @@ address U_V3_Factory
 
 The Uniswap V3 Factory address
 
-### factory
-
-```solidity
-contract IUniswapV3Factory factory
-```
-
 ### DAI
 
 ```solidity
 address DAI
 ```
+
+The DAI token address
 
 ### USDC
 
@@ -44,16 +40,24 @@ address DAI
 address USDC
 ```
 
-### poolFee
+The USDC token address
+
+### factory
 
 ```solidity
-uint24 poolFee
+contract IUniswapV3Factory factory
 ```
 
 ### nonfungiblePositionManager
 
 ```solidity
 contract INonfungiblePositionManager nonfungiblePositionManager
+```
+
+### poolFee
+
+```solidity
+uint24 poolFee
 ```
 
 ### Deposit
@@ -70,7 +74,7 @@ struct Deposit {
 ### deposits
 
 ```solidity
-mapping(uint256 => struct LiquidityExamples.Deposit) deposits
+mapping(uint256 => struct UniswapV3.Deposit) deposits
 ```
 
 _deposits[tokenId] => Deposit_
