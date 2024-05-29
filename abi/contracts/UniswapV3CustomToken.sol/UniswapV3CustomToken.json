@@ -1,5 +1,5 @@
 [
-  "constructor()",
+  "constructor(address,address)",
   "function DAI() view returns (address)",
   "function USDC() view returns (address)",
   "function U_V3_Factory() view returns (address)",

@@ -34,6 +34,7 @@ if (config.networks?.hardhat?.forking?.enabled) {
         before(async () => {
             // Getting of signers.
             [deployer, owner, user, newDaiOwner, newUsdcOwner] = await ethers.getSigners();
+            owner = deployer;
             //////////////////////////////////////////////////////////////////////////////////////////
             /// ---------- hardhat set balance ---------- ////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////
@@ -86,14 +87,13 @@ if (config.networks?.hardhat?.forking?.enabled) {
             console.log("UniswapV3 deployed to : ", uni.address);
             console.log("");
 
-            owner = deployer;
             snapshotA = await takeSnapshot();
         });
 
         afterEach(async () => await snapshotA.restore());
 
         describe("# Scenarios: full process", function () {
-            it.only("Create pool on Uniswap V3 pair", async () => {
+            it("Create pool on Uniswap V3 pair", async () => {
                 console.log("Test. Step 1: Create pool on Uniswap V3 pair");
                 console.log("Test. Token 1 : DAI", DAI);
                 console.log("Test. Token 2 : USDC", USDC);

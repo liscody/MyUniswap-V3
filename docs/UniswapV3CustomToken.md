@@ -1,6 +1,6 @@
 # Solidity API
 
-## UniswapV3
+## UniswapV3CustomToken
 
 ### U_V3_NonfungiblePositionManager
 
@@ -78,7 +78,7 @@ struct Deposit {
 ### deposits
 
 ```solidity
-mapping(uint256 => struct UniswapV3.Deposit) deposits
+mapping(uint256 => struct UniswapV3CustomToken.Deposit) deposits
 ```
 
 _deposits[tokenId] => Deposit_
@@ -92,7 +92,7 @@ uint256 token_Id
 ### constructor
 
 ```solidity
-constructor() public
+constructor(address token0, address token1) public
 ```
 
 ### createFactoryPool

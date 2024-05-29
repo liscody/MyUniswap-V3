@@ -91,20 +91,11 @@ const config: HardhatUserConfig = {
             //         }
             //     }
             // }
-        ] ,
-        // overrides: { // Example of specifying of a compiler for a specified contract.
-           
-           
-        //     // /Users/ihorantsupov/MyGit/Uniswap v3/uniswap/contracts/UniswapV3Liquidity.sol
-        //     // contracts/TokenOne.sol (^0.8.0)
-        //     "contracts/TokenOne.sol": {
+        ],
+        // overrides: {
+        //     "contracts/mocks/ERC20Mock.sol": {
         //         version: "0.8.0",
-        //         settings: { }
-        //     },
-        //     // contracts/TokenTwo.sol (^0.8.0)
-        //     "contracts/TokenTwo.sol": {
-        //         version: "0.8.0",
-        //         settings: { }
+        //         settings: {}
         //     },
         // }
     },
