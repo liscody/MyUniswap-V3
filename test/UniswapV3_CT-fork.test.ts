@@ -79,7 +79,7 @@ if (config.networks?.hardhat?.forking?.enabled) {
         afterEach(async () => await snapshotA.restore());
 
         describe("# Scenarios: full process", function () {
-            it.only("Create & init pool on Uniswap V3 pair", async () => {
+            it("Create & init pool on Uniswap V3 pair", async () => {
                 console.log("");
                 console.log("=============== START ======================");
                 console.log("");
@@ -219,6 +219,99 @@ if (config.networks?.hardhat?.forking?.enabled) {
                 console.log("Test. Mint new position tx : ", tx.hash);
                 console.log("");
             });
+
+            it.only("Create & init pool on Uniswap V3 pair with mint New Position ", async () => {
+                console.log("");
+                console.log("=============== START ======================");
+                console.log("");
+                console.log("Test. Step 1: Get tokens addresses for create pair on Uniswap V3 ");
+                console.log("---------- *** ----------");
+                console.log("Test. Token 1 : TokenOne", token0.address);
+                console.log("Test. Token 2 : TokenTwo", token1.address);
+                console.log("");
+
+                console.log("Test. Step 2: Validate order of tokens addresses for create pair on Uniswap V3 ");
+                console.log("---------- *** ----------");
+                if (token0.address > token1.address) {
+                    console.log("Token 1 is less than Token 2");
+                    addr1 = token1.address;
+                    addr2 = token0.address;
+                } else {
+                    console.log("Token 2 is less than Token 1");
+                    addr1 = token0.address;
+                    addr2 = token1.address;
+                }
+                console.log("");
+
+                console.log("Test. Step 3: Create & initialize pool on Uniswap V3 pair");
+                console.log("---------- *** ----------");
+                console.log("");
+
+                const fee = 3000;
+                const tx = await uni.createAndInitializePool(addr1, addr2, fee, 5295128739, {
+                    value: ethers.utils.parseEther("0.0")
+                });
+                console.log("");
+                console.log("Test. Pool created");
+                console.log("");
+
+                console.log("Test. Step 4: Get pool info");
+                console.log("---------- *** ----------");
+                console.log("Test. tx hash : ", tx.hash);
+
+                console.log("");
+                // get pool info
+                const pool = await uni.getPoolInfo(addr1, addr2, fee);
+                console.log("Test. Pool info : ", pool);
+                console.log("");
+
+                console.log("Test. Step 2: Transfer token1 to uni contract");
+                console.log("Test. Transfer token1 to uni contract");
+                console.log("");
+
+                // check uni contract balance before transfer
+                const balance = await token0.balanceOf(uni.address);
+                console.log("Test. Balance in token1 before transfer: ", balance.toString());
+                // get owner balance
+                const ownerBalance = await token0.balanceOf(owner.address);
+                console.log("Test. Owner balance in token1 before transfer: ", ownerBalance.toString());
+                // transfer token to uni contract
+                await token0.connect(owner).transfer(uni.address, ethers.utils.parseUnits("1", 18));
+                console.log("Test. Transfer token1 to uni contract");
+
+                // check uni contract balance after transfer
+                const balanceAfter = await token0.balanceOf(uni.address);
+                console.log("Test. Balance in token1 after transfer : ", balanceAfter.toString());
+
+                console.log("Test. Step 3: Transfer token2 to uni contract");
+                console.log("Test. Transfer token2 to uni contract");
+                console.log("");
+
+                // check uni contract balance before transfer
+                const balanceUsdc = await token1.balanceOf(uni.address);
+                console.log("Test. Balance in token2 before transfer: ", balanceUsdc.toString());
+                // transfer token to uni contract
+                // todo: get answer for this
+                // why we need to transfer again?
+                const newBalance = ethers.utils.parseUnits("100000", 18);
+                await setBalance(owner.address, newBalance);
+                await token1.connect(owner).transfer(uni.address, ethers.utils.parseUnits("1", 18));
+                console.log("Test. Transfer token2 to uni contract");
+                // check uni contract balance after transfer
+                const balanceUsdcAfter = await token1.balanceOf(uni.address);
+                console.log("Test. Balance in token2 after transfer : ", balanceUsdcAfter.toString());
+
+                console.log("Test. Step 4: Mint new position");
+                console.log("Test. Mint new position");
+                console.log("");
+
+                // mintNewPosition
+                const tx2 = await uni.mintNewPosition();
+                console.log("");
+                console.log("Test. Mint new position tx : ", tx2.hash);
+                console.log("");
+            });
+
         });
     });
 } else {
