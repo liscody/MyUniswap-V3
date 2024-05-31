@@ -43,3 +43,4 @@ gas-report.txt
 
 # Output of `solc`.
 bin
+.vscode
